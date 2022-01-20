@@ -1,6 +1,6 @@
 # 论文分享：Graph Contrastive Learning with Augmentations
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/title.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/title.png)
 
 ## Abstract
 
@@ -16,13 +16,13 @@ GNN作为图表示方法，广泛应用于节点分类、链路预测等图任�
 
 文章提出的图对比学习框架如下图所示，共分为四部分：
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/framework.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/framework.png)
 
 （1） Graph data augmentation
 
 数据增强的目的是在不影响语义标签的情况下，通过某种转换来创建新颖的、合理的数据。针对图的数据增强可表示为：给定一个图 <img src="https://www.zhihu.com/equation?tex= G \in \{G_m: m \in M\}" alt=" G \in \{G_m: m \in M\}" class="ee_img tr_noresize" eeimg="1"> ，可将增强图 <img src="https://www.zhihu.com/equation?tex=\hat{G}" alt="\hat{G}" class="ee_img tr_noresize" eeimg="1"> 表示为： <img src="https://www.zhihu.com/equation?tex=\hat{G} \sim q(\hat{G}|G)" alt="\hat{G} \sim q(\hat{G}|G)" class="ee_img tr_noresize" eeimg="1"> ，其中 <img src="https://www.zhihu.com/equation?tex=q(\cdot|G)" alt="q(\cdot|G)" class="ee_img tr_noresize" eeimg="1"> 代表预定义的数据增强分布。数据增强分布代表了对于数据分布的先验信息。文章提出了四种针对图的数据增强方法：
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/da.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/da.png)
 
 * Node dropping：从图中随机去除一定比例的节点及其连边，使得学习的表示在节点扰动下具有一致性。代表的先验信息是：缺失部分节点不影响图的语义。
 * Edge perturbation：随机增加或删除一定比例的边，使学习的表示在边扰动下具有一致性。代表的先验信息是：增减部分连边不影响图的语义。
@@ -47,11 +47,11 @@ GNN作为图表示方法，广泛应用于节点分类、链路预测等图任�
 
 第 <img src="https://www.zhihu.com/equation?tex=n" alt="n" class="ee_img tr_noresize" eeimg="1"> 个图数据的NT-Xent误差可以定义为：
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/NT-Xent.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/NT-Xent.png)
 
 上述误差可重写为：
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/loss2.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/loss2.png)
 
 实际上是最大化两类增强图的表示之间的互信息。
 
@@ -63,7 +63,7 @@ GNN作为图表示方法，广泛应用于节点分类、链路预测等图任�
 
 这部分实验评估了采用之前提出的四种数据增强方法的图对比学习框架在半监督图分类任务上的效果。在半监督设定下，模型的训练采用pre-training加finetuning的方法，采用的数据集包括Biochemical Molecules以及Social Networks两类。通过实验得到了文章所提出的预训练方法相对于learn from scratch方法的性能提升（Fig2）。
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/exp1dataset.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/exp1dataset.png)
 
 实验主要讨论了三部分内容：
 
@@ -73,13 +73,13 @@ GNN作为图表示方法，广泛应用于节点分类、链路预测等图任�
 
 通过观察Fig2中每个数据图实验结果中的最上一行与最右一列可以发现采用数据增强能有效提升GraphCL的分类准确度。这是由于应用适当的数据增强会对数据分布注入相应的先验，通过最大化图与其增强图之间的一致性，使模型学习得到的表示对扰动具有不变性。
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/fig2.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/fig2.png)
 
 （2）组合不同数据增强方式对算法效果提升更大
 
 通过观察Fig2发现每个数据集上采用相同数据增强方式构建的样本对所对应的结果均不是该数据集上的最优结果，而每个数据集上的最优结果均采用不同数据增强组合的方式。文章给出的解释是，采用不同数据增强组合的方式避免了学习到的特征过于拟合低层次的“shortcut”，使特征更加具有泛化性。同时通过Fig3发现当采用不同数据增强方式组合时，相比于单一数据增强时的对比误差下降的更慢，说明不同数据增强组合的方式意味着”更难“的对比学习任务。
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/fig3.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/fig3.png)
 
 2. 数据增强的类型，强度以及模式对GraphCL效果的影响
 
@@ -87,7 +87,7 @@ GNN作为图表示方法，广泛应用于节点分类、链路预测等图任�
 
 通过Fig2可以看出Edge perturbation的数据增强方式在除NCI1之外的三个数据集上均有较好的效果，但是在NCI1上的效果反而比baseline算法差。这是由于对NCI1中的网络的语义对于边的扰动更加敏感，对网络中边进行修改可能会改变分子的性质从而破坏网络语义，进而影响下游任务。针对Edge perturbation的强度，从Fig4中可以得出，在COLLAB数据集上，算法性能随Edge perturbation的强度增加而提升，但在NCI1数据集上，Edge perturbation强度对算法效果无明显影响。
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/fig4.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/fig4.png)
 
 （2）Attribute masking的方式在更“密集“的图数据上能取得更好效果
 
@@ -105,13 +105,13 @@ GNN作为图表示方法，广泛应用于节点分类、链路预测等图任�
 
  在这部分实验中，文章对比了GraphCL与SOTA的图表示方法在四种setting下的图分类任务中的性能，包括半监督、无监督、迁移学习以及对抗攻击setting。具体实验设置详见原文。在半监督、无监督、迁移学习任务中，GraphCL在大部分数据集上的分类准确率都达到了SOTA，在对抗攻击setting下，实验结果表明GraphCL增强了模型的鲁棒性。
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab3.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab3.png)
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab4.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab4.png)
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab5.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab5.png)
 
-![](https://raw.githubusercontent.com/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab6.png)
+![](https://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/wang-rx/Markdown4Zhihu/master/Data/GraphCL/tab6.png)
 
 ## Conclusion
 
